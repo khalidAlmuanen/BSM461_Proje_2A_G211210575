@@ -1,0 +1,3 @@
+Dosya sayisi: 14
+Toplam byte: 461823430
+Toplam MiB: 440.43

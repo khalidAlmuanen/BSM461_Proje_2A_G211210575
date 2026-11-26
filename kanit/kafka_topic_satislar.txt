@@ -1,0 +1,4 @@
+Topic: satislar	TopicId: nEV0XPBfSEa6w0fEcA-RVw	PartitionCount: 3	ReplicationFactor: 1	Configs: 
+	Topic: satislar	Partition: 0	Leader: 1	Replicas: 1	Isr: 1	Elr: 	LastKnownElr: 
+	Topic: satislar	Partition: 1	Leader: 1	Replicas: 1	Isr: 1	Elr: 	LastKnownElr: 
+	Topic: satislar	Partition: 2	Leader: 1	Replicas: 1	Isr: 1	Elr: 	LastKnownElr: 

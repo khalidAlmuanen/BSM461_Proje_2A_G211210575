@@ -1,0 +1,96 @@
+ham sat─▒r: 3,000,000   (40.4 s)
+docker : 10:34:21 WARN RowBasedKeyValueBatch: Calling spill() on RowBasedKeyValueBatch. Will not spill but return 0.
+At line:1 char:1
++ docker compose exec -T spark spark-submit is/toplu_is.py --sablon sat ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (10:34:21 WARN R...l but return 0.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+10:34:22 WARN RowBasedKeyValueBatch: Calling spill() on RowBasedKeyValueBatch. Will not spill but return 0.
+10:34:22 WARN RowBasedKeyValueBatch: Calling spill() on RowBasedKeyValueBatch. Will not spill but return 0.
+10:34:23 WARN RowBasedKeyValueBatch: Calling spill() on RowBasedKeyValueBatch. Will not spill but return 0.
+10:34:43 WARN RowBasedKeyValueBatch: Calling spill() on RowBasedKeyValueBatch. Will not spill but return 0.
+Parquet yaz─▒ld─▒: s3a://islenmis/satis/   (89.7 s)
+10:35:41 WARN RowBasedKeyValueBatch: Calling spill() on RowBasedKeyValueBatch. Will not spill but return 0.
+10:35:42 WARN RowBasedKeyValueBatch: Calling spill() on RowBasedKeyValueBatch. Will not spill but return 0.
+10:35:42 WARN RowBasedKeyValueBatch: Calling spill() on RowBasedKeyValueBatch. Will not spill but return 0.
+10:35:43 WARN RowBasedKeyValueBatch: Calling spill() on RowBasedKeyValueBatch. Will not spill but return 0.
+10:36:04 WARN RowBasedKeyValueBatch: Calling spill() on RowBasedKeyValueBatch. Will not spill but return 0.
+Delta s├╝r├╝mleri:
++-------+-------------------+---------+
+|version|timestamp          |operation|
++-------+-------------------+---------+
+|0      |2026-11-26 10:36:29|WRITE    |
++-------+-------------------+---------+
+
+== Physical Plan ==
+AdaptiveSparkPlan (8)
++- Sort (7)
+   +- Exchange (6)
+      +- HashAggregate (5)
+         +- Exchange (4)
+            +- HashAggregate (3)
+               +- Project (2)
+                  +- Scan parquet  (1)
+
+
+(1) Scan parquet 
+Output [2]: [urun_id#792L, tarih#793]
+Batched: true
+Location: PreparedDeltaFileIndex [s3a://tablolar/satis]
+PartitionFilters: [isnotnull(tarih#793), (tarih#793 >= 2026-11-23)]
+ReadSchema: struct<urun_id:bigint>
+
+(2) Project
+Output [1]: [urun_id#792L]
+Input [2]: [urun_id#792L, tarih#793]
+
+(3) HashAggregate
+Input [1]: [urun_id#792L]
+Keys [1]: [urun_id#792L]
+Functions [1]: [partial_count(1)]
+Aggregate Attributes [1]: [count#1666L]
+Results [2]: [urun_id#792L, count#1667L]
+
+(4) Exchange
+Input [2]: [urun_id#792L, count#1667L]
+Arguments: hashpartitioning(urun_id#792L, 8), ENSURE_REQUIREMENTS, [plan_id=434]
+
+(5) HashAggregate
+Input [2]: [urun_id#792L, count#1667L]
+Keys [1]: [urun_id#792L]
+Functions [1]: [count(1)]
+Aggregate Attributes [1]: [count(1)#811L]
+Results [2]: [urun_id#792L, count(1)#811L AS count#812L]
+
+(6) Exchange
+Input [2]: [urun_id#792L, count#812L]
+Arguments: rangepartitioning(count#812L DESC NULLS LAST, 8), ENSURE_REQUIREMENTS, [plan_id=437]
+
+(7) Sort
+Input [2]: [urun_id#792L, count#812L]
+Arguments: [count#812L DESC NULLS LAST], true, 0
+
+(8) AdaptiveSparkPlan
+Output [2]: [urun_id#792L, count#812L]
+Arguments: isFinalPlan=false
+
+
++-------+-----+
+|urun_id|count|
++-------+-----+
+|1      |93471|
+|2      |44980|
+|3      |28848|
+|4      |21696|
+|5      |16707|
+|6      |14125|
+|7      |11936|
+|8      |10172|
+|9      |9337 |
+|10     |8226 |
++-------+-----+
+only showing top 10 rows
+
+sorgu s├╝resi: 4.32 s
+en b├╝y├╝k anahtar─▒n pay─▒: %3.1   (ideal da─ا─▒l─▒mda her anahtar e┼اit pay al─▒rd─▒)

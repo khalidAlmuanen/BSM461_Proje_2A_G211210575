@@ -2,3 +2,16 @@ __pycache__/
 *.pyc
 .DS_Store
 spark-warehouse/
+# Generated data
+*.jsonl
+*.parquet
+_delta_log/
+
+# Local environment
+.env
+.env.*
+!.env.example
+.venv/
+
+# Temporary files
+*.log
