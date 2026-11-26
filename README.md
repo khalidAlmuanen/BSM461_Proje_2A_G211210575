@@ -2,9 +2,12 @@
 
 ## Gerçek Zamanlı Satış ve Stok Takibi
 
-**Şube:** 2. Öğretim A (`2A`)  
-**Grup kodu:** `G211210575`  
-**Şablon:** 2 — `satis`  
+**Şube:** 2. Öğretim A (2A)
+
+**Grup Kodu:** G211210575
+
+**Şablon:** 2 — Gerçek Zamanlı Satış ve Stok Takibi
+ 
 **Kaynak kit:** [BSM 461 Başlangıç Kiti](https://github.com/sumeyyekaynak/bsm461-proje-kit)
 
 Bu projede bir mağaza zincirindeki satış, iade ve stok girişi olaylarını işleyen bir veri hattı kurulmaktadır. Anlık veriler Kafka üzerinden, geçmiş veriler ise S3 uyumlu nesne deposu üzerinden işlenir. Toplu analiz için Spark, sonuçların dosya ve tablo biçiminde saklanması için Parquet ve Delta Lake kullanılır. Akış analizi, servis deposu ve pano çalışmaları proje kapsamında geliştirilecektir.
