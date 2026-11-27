@@ -1,0 +1,34 @@
+﻿Adim 6 - JSON / Parquet Ilk Boyut Karsilastirmasi
+Grup: G211210575
+Sablon: satis
+Olcum tarihi: 2026-11-26
+
+JSONL:
+Dosya sayisi: 14
+Kaynak olay sayisi: 3000000
+Toplam byte: 461823430
+Toplam MiB: 440.43
+
+Parquet:
+Konum: s3://islenmis/satis/
+Dosya sayisi: 98
+Toplam byte: 52036601
+Toplam MiB: 49.63
+
+Ilk boyut orani: 8.87
+Ilk azalma yuzdesi: 88.73
+
+Olcum yontemi:
+S3 list_objects_v2 paginator
+Parquet uzantili dosyalarin toplam boyutu
+
+Not:
+Spark temizleme sirasinda dropDuplicates
+ve dropna islemleri uygulamaktadir.
+
+Bu nedenle sonuc dogrudan saf Parquet
+sikistirma orani olarak yorumlanamaz.
+
+Sonraki deney:
+Ayni kayitlar ile Snappy, ZSTD ve Gzip
+boyut ve okuma suresi karsilastirmasi.
